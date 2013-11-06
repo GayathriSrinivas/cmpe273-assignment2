@@ -20,7 +20,7 @@ import de.spinscale.dropwizard.jobs.annotations.Every;
 import edu.sjsu.cmpe.procurement.config.ProcurementServiceConfiguration;
 
 
-@Every("5min")
+@Every("2min")
 public class QueueConsumer extends Job {
 	
 	private static String user;
@@ -90,6 +90,7 @@ public class QueueConsumer extends Job {
 			String body ="";
 			Message msg;
 			OrderBook book = new OrderBook();
+			boolean isBookLost = false;
 			
 			while((msg = consumer.receive(1000*30)) !=null){
 				if(msg instanceof StompJmsMessage ){
@@ -98,10 +99,12 @@ public class QueueConsumer extends Job {
 					System.out.println("QueueConsumer Received message = " + body);
 					String[] parts=body.split(":");
 					System.out.println("ISBN Number to be sent ::"+parts[1]);
-					book.setOrder_book_isbns(Integer.parseInt(parts[1]));	
+					book.setOrder_book_isbns(Integer.parseInt(parts[1]));
+					isBookLost = true;
 				}
 			}
-			submitBookOrder(book);
+			if(isBookLost)
+				submitBookOrder(book);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

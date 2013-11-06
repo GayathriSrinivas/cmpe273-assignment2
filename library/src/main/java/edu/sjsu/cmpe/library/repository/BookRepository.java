@@ -29,7 +29,7 @@ public class BookRepository implements BookRepositoryInterface {
     }
     
     private ConcurrentHashMap<Long, Book> seedData(){
-    	System.out.println("alling seed data ...");
+    	System.out.println("Calling seed data ...");
 		ConcurrentHashMap<Long, Book> bookMap = new ConcurrentHashMap<Long, Book>();
 		Book book = new Book();
 		book.setIsbn(1L);

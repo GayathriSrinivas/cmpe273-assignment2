@@ -8,7 +8,7 @@ stompQueueName: /queue/75829.book.orders
 
 # Procurement Service needs to publish to all topics!
 # FIXME - Replace 99999 with your ID
-stompTopicName: /topic/75829..book.*
+stompTopicName: /topic/75829.book.all
 
 # TODO: Apollo STOMP Broker URL and login
 apolloUser: "admin"

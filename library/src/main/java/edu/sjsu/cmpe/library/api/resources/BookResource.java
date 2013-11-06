@@ -47,6 +47,7 @@ public class BookResource {
 		 topicListener = new TopicListener(configuration,bookRepository);
 		 topicListener.initTopic();
 		 new Thread(topicListener).start();
+		 System.out.println("After thread ..");
     }
 
     @GET
@@ -98,6 +99,7 @@ public class BookResource {
 		
 		if (status == Book.Status.lost)
 		{
+			System.out.println(configuration.getLibraryName()+":"+book.getIsbn());
 			queueProducer.sendDataByQueue(configuration.getLibraryName()+":"+book.getIsbn());
 		}	
 		book.setStatus(status);

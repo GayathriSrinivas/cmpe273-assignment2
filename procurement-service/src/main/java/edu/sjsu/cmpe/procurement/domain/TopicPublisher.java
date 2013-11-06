@@ -19,7 +19,7 @@ import de.spinscale.dropwizard.jobs.Job;
 import de.spinscale.dropwizard.jobs.annotations.Every;
 import edu.sjsu.cmpe.procurement.config.ProcurementServiceConfiguration;
 
-@Every("5min")
+@Every("2min")
 public class TopicPublisher extends Job {
 	
 	private static String user;
